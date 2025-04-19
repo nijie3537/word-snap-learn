@@ -114,7 +114,7 @@ const LoginPage = () => {
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90"
+                  className="w-full bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90 text-black"
                   disabled={isLoading}
                 >
                   {isLoading ? "Signing in..." : "Sign In"}
@@ -149,7 +149,7 @@ const LoginPage = () => {
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90"
+                  className="w-full bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90 text-black"
                   disabled={isLoading}
                 >
                   {isLoading ? "Verifying..." : "Verify & Sign In"}
