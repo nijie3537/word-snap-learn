@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Upload, Save, Zap, ZapOff, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useToast } from "@/components/ui/use-toast";
+import { removeBackground, loadImage } from "../utils/imageUtils";
 
 const CameraPage = () => {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ const CameraPage = () => {
   const [isDemoMode, setIsDemoMode] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const [detectedObjects] = useState([
     {
@@ -23,7 +26,7 @@ const CameraPage = () => {
       name: "Coffee Grinder",
       pronunciation: "/ˈkɒfi ˈɡraɪndə/",
       translation: "咖啡研磨机",
-      position: { top: "30%", left: "85%" }  // Moved even further right
+      position: { top: "30%", left: "85%" }
     },
     {
       name: "Milk Pitcher",
@@ -105,8 +108,32 @@ const CameraPage = () => {
     navigate(`/word/${objectName.toLowerCase().replace(' ', '-')}`);
   };
 
-  const handleSaveScene = () => {
-    console.log("Saving current scene with detected objects");
+  const saveToWordbook = async () => {
+    if (isDemoMode) {
+      const fullImage = '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png';
+      
+      for (const object of detectedObjects) {
+        const wordName = object.name.toLowerCase().replace(' ', '-');
+        
+        try {
+          const response = await fetch(fullImage);
+          const blob = await response.blob();
+          const imageElement = await loadImage(blob);
+          const processedBlob = await removeBackground(imageElement);
+          
+          console.log(`Processed and saved word: ${wordName}`);
+        } catch (error) {
+          console.error(`Error processing image for ${wordName}:`, error);
+        }
+      }
+
+      toast({
+        title: "Success!",
+        description: "Demo scene and words have been saved to your wordbook.",
+      });
+
+      navigate('/wordbook');
+    }
   };
 
   const handleBack = () => {
@@ -219,7 +246,7 @@ const CameraPage = () => {
           />
           
           <button 
-            onClick={handleSaveScene}
+            onClick={saveToWordbook}
             className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center"
           >
             <Save className="w-5 h-5 text-white" />
