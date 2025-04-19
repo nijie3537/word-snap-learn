@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -14,31 +13,38 @@ const WordbookPage = () => {
   const [words] = useState([
     {
       id: 1,
-      word: "Radish",
-      translation: "萝卜",
+      word: "Coffee Machine",
+      translation: "咖啡机",
       date: "2 days ago",
-      image: "/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png"
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     },
     {
       id: 2,
-      word: "Coriander",
-      translation: "香菜",
-      date: "3 days ago",
-      image: "/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png"
+      word: "Coffee Grinder",
+      translation: "咖啡研磨机",
+      date: "2 days ago",
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     },
     {
       id: 3,
-      word: "Mascara",
-      translation: "睫毛膏",
-      date: "1 week ago",
-      image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png"
+      word: "Milk Pitcher",
+      translation: "奶壶",
+      date: "2 days ago",
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     },
     {
       id: 4,
-      word: "Foundation",
-      translation: "粉底液",
-      date: "2 weeks ago",
-      image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png"
+      word: "Portafilter",
+      translation: "咖啡滤器",
+      date: "2 days ago",
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
+    },
+    {
+      id: 5,
+      word: "Coffee Tamper",
+      translation: "咖啡压粉器",
+      date: "2 days ago",
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     }
   ]);
 
@@ -102,26 +108,26 @@ const WordbookPage = () => {
           
           <TabsContent value="collections">
             <div className="grid grid-cols-2 gap-3">
-              {sortedImages.map(([image, data], index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-xl overflow-hidden shadow-sm"
-                  whileHover={{ y: -3 }}
-                  onClick={() => setSelectedImage(image)}
-                >
-                  <div className="h-32 bg-gray-100">
-                    <img 
-                      src={image} 
-                      alt={`Collection ${index + 1}`}
-                      className="w-full h-full object-cover" 
-                    />
+              <motion.div
+                className="bg-white rounded-xl overflow-hidden shadow-sm"
+                whileHover={{ y: -3 }}
+                onClick={() => setSelectedImage("/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png")}
+              >
+                <div className="h-32 bg-gray-100">
+                  <img 
+                    src="/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
+                    alt="Coffee Scene"
+                    className="w-full h-full object-cover" 
+                  />
+                </div>
+                <div className="p-3">
+                  <p className="text-sm font-medium">Coffee Tools</p>
+                  <div className="flex justify-between items-center mt-1">
+                    <p className="text-xs text-gray-600">5 words</p>
+                    <p className="text-xs text-gray-400">2 days ago</p>
                   </div>
-                  <div className="p-3">
-                    <p className="text-sm font-medium">{data.words.length} words</p>
-                    <p className="text-xs text-gray-600">{data.date}</p>
-                  </div>
-                </motion.div>
-              ))}
+                </div>
+              </motion.div>
             </div>
           </TabsContent>
           
@@ -150,26 +156,11 @@ const WordbookPage = () => {
           </button>
           <div className="p-0">
             {selectedImage && (
-              <div>
-                <img 
-                  src={selectedImage} 
-                  alt="Full size" 
-                  className="w-full h-auto"
-                />
-                <div className="p-4 bg-white">
-                  <h3 className="font-medium mb-2">Words in this image:</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {imageGroups[selectedImage].words.map((word, index) => (
-                      <span 
-                        key={index}
-                        className="bg-wordsnap-bg-light px-3 py-1 rounded-full text-sm"
-                      >
-                        {word}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <img 
+                src={selectedImage} 
+                alt="Full size" 
+                className="w-full h-auto"
+              />
             )}
           </div>
         </DialogContent>
