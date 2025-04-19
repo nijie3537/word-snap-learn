@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Volume } from "lucide-react";
@@ -7,7 +6,7 @@ import { removeBackground, loadImage } from "../utils/imageUtils";
 
 // Mock word data mapping
 const wordDatabase = {
-  "coffee machine": {
+  "coffee-machine": {
     phonetic: "/ˈkɒfi məˈʃiːn/",
     translation: "咖啡机 (Kāfēi jī)",
     memoryHack: "Think of it as the magical machine that transforms simple beans into liquid gold - your morning coffee!",
@@ -22,9 +21,10 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    objectPosition: "top",
     reference: "A modern coffee machine"
   },
-  "coffee grinder": {
+  "coffee-grinder": {
     phonetic: "/ˈkɒfi ˈɡraɪndə/",
     translation: "咖啡研磨机 (Kāfēi yánmó jī)",
     memoryHack: "Picture the grinding sound - it's like the machine is speaking the word 'grinder' as it works!",
@@ -39,9 +39,10 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    objectPosition: "center right",
     reference: "A professional coffee grinder"
   },
-  "milk pitcher": {
+  "milk-pitcher": {
     phonetic: "/mɪlk ˈpɪtʃə/",
     translation: "奶壶 (Nǎi hú)",
     memoryHack: "Think of it as the pitcher that 'pitches' milk into your coffee with perfect precision!",
@@ -56,6 +57,7 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    objectPosition: "center left",
     reference: "A stainless steel milk pitcher"
   },
   "portafilter": {
@@ -73,9 +75,10 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    objectPosition: "bottom left",
     reference: "An espresso machine portafilter"
   },
-  "coffee tamper": {
+  "coffee-tamper": {
     phonetic: "/ˈkɒfi ˈtæmpə/",
     translation: "咖啡压粉器 (Kāfēi yā fěn qì)",
     memoryHack: "Remember it 'tamps' (presses down) the coffee - the word sounds like the action it performs!",
@@ -90,6 +93,7 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    objectPosition: "bottom right",
     reference: "A professional coffee tamper"
   }
 };
@@ -101,7 +105,7 @@ const WordDetailPage = () => {
   const [processedImage, setProcessedImage] = useState<string | null>(null);
 
   // Get word data from our database
-  const wordData = word ? wordDatabase[word.toLowerCase()] || wordDatabase["coffee machine"] : wordDatabase["coffee machine"];
+  const wordData = word ? wordDatabase[word] || wordDatabase["coffee-machine"] : wordDatabase["coffee-machine"];
 
   useEffect(() => {
     const processImage = async () => {
@@ -141,7 +145,7 @@ const WordDetailPage = () => {
           <ArrowLeft className="w-6 h-6" />
         </button>
         <h1 className="text-xl font-bold capitalize">
-          {word || "Coffee Machine"}
+          {word?.replace(/-/g, ' ') || "Coffee Machine"}
         </h1>
       </div>
 
@@ -150,8 +154,9 @@ const WordDetailPage = () => {
         <div className="mb-6 rounded-xl overflow-hidden bg-white shadow-md">
           <img 
             src={processedImage || wordData.image} 
-            alt={word || "Coffee Machine"}
+            alt={word?.replace(/-/g, ' ') || "Coffee Machine"}
             className="w-full h-48 object-contain bg-white"
+            style={{ objectPosition: wordData.objectPosition || 'center' }}
           />
         </div>
 
@@ -164,7 +169,7 @@ const WordDetailPage = () => {
         >
           <div className="flex justify-between items-start mb-3">
             <div>
-              <h2 className="text-2xl font-bold capitalize">{word || "Coffee Machine"}</h2>
+              <h2 className="text-2xl font-bold capitalize">{word?.replace(/-/g, ' ') || "Coffee Machine"}</h2>
               <p className="text-gray-500">{wordData.phonetic}</p>
             </div>
             <button 
@@ -228,4 +233,3 @@ const WordDetailPage = () => {
 };
 
 export default WordDetailPage;
-
