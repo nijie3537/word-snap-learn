@@ -11,36 +11,37 @@ const CameraPage = () => {
   const [isDemoMode, setIsDemoMode] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
+
   const [detectedObjects] = useState([
     {
       name: "Coffee Machine",
       pronunciation: "/ˈkɒfi məˈʃiːn/",
       translation: "咖啡机",
-      position: { top: "20%", left: "25%" }
+      position: { top: "15%", left: "20%" }
     },
     {
       name: "Coffee Grinder",
       pronunciation: "/ˈkɒfi ˈɡraɪndə/",
       translation: "咖啡研磨机",
-      position: { top: "35%", left: "75%" }
+      position: { top: "30%", left: "70%" }
     },
     {
       name: "Milk Pitcher",
       pronunciation: "/mɪlk ˈpɪtʃə/",
       translation: "奶壶",
-      position: { top: "50%", left: "15%" }
+      position: { top: "45%", left: "10%" }
     },
     {
       name: "Portafilter",
       pronunciation: "/ˈpɔːtəfɪltə/",
       translation: "咖啡滤器",
-      position: { top: "85%", left: "25%" }
+      position: { top: "75%", left: "20%" }
     },
     {
       name: "Coffee Tamper",
       pronunciation: "/ˈkɒfi ˈtæmpə/",
       translation: "咖啡压粉器",
-      position: { top: "85%", left: "75%" }
+      position: { top: "80%", left: "65%" }
     }
   ]);
 
@@ -165,12 +166,12 @@ const CameraPage = () => {
                 className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                 style={{ top: object.position.top, left: object.position.left }}
               >
-                <div className="bg-[#F2F5E4] bg-opacity-70 rounded-lg p-1.5 shadow-lg max-w-[160px]">
-                  <h3 className="text-xs font-medium text-gray-800">
+                <div className="bg-[#F2F5E4] bg-opacity-70 rounded-lg p-1.5 shadow-lg max-w-[160px] whitespace-nowrap">
+                  <h3 className="text-xs font-medium text-gray-800 whitespace-nowrap">
                     {object.name}
                   </h3>
-                  <div className="flex items-center gap-1 mt-0.5">
-                    <span className="text-[10px] text-gray-600">{object.pronunciation}</span>
+                  <div className="flex items-center gap-1 mt-0.5 whitespace-nowrap">
+                    <span className="text-[10px] text-gray-600 whitespace-nowrap">{object.pronunciation}</span>
                     <button 
                       onClick={() => playPronunciation(object.name)}
                       className="p-0.5 hover:text-wordsnap-primary-green"
