@@ -204,6 +204,13 @@ const LoginPage = () => {
             </Button>
           </p>
         </div>
+        <Button
+          variant="ghost"
+          className="mt-4 text-gray-600 hover:text-gray-900"
+          onClick={() => navigate("/language-selection")}
+        >
+          Language Settings
+        </Button>
       </div>
     </div>
   );
