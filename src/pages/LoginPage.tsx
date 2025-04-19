@@ -1,7 +1,8 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { User, UserPlus } from "lucide-react";
+import { User, UserPlus, Mail, Phone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,6 +14,49 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  // Define custom social media icons
+  const socialProviders = [
+    { 
+      name: "Google", 
+      icon: () => (
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M8 12 h8"></path>
+          <path d="M12 8 v8"></path>
+        </svg>
+      )
+    },
+    { 
+      name: "WeChat", 
+      icon: () => (
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+          <path d="M15 20a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
+          <path d="M9 16a4 4 0 0 0 6-4"></path>
+        </svg>
+      )
+    },
+    { 
+      name: "Xiaohongshu", 
+      icon: () => (
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+      )
+    },
+    { 
+      name: "Weibo", 
+      icon: () => (
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 12a8 8 0 0 0-8-8"></path>
+          <path d="M4 12a8 8 0 0 1 8-8"></path>
+          <path d="M12 4v8"></path>
+          <circle cx="12" cy="16" r="4"></circle>
+        </svg>
+      )
+    }
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,8 +89,14 @@ const LoginPage = () => {
         <div className="bg-white rounded-xl shadow-sm p-6">
           <Tabs defaultValue="email" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="email">Email</TabsTrigger>
-              <TabsTrigger value="phone">Phone</TabsTrigger>
+              <TabsTrigger value="email" className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                <span>Email</span>
+              </TabsTrigger>
+              <TabsTrigger value="phone" className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <span>Phone</span>
+              </TabsTrigger>
             </TabsList>
             
             <TabsContent value="email">
@@ -126,22 +176,20 @@ const LoginPage = () => {
             </div>
 
             <div className="mt-6 grid grid-cols-4 gap-3">
-              {["Google", "WeChat", "Xiaohongshu", "Weibo"].map((provider) => (
+              {socialProviders.map((provider) => (
                 <button
-                  key={provider}
+                  key={provider.name}
                   type="button"
                   className="inline-flex justify-center items-center p-3 border border-gray-200 rounded-md shadow-sm bg-white hover:bg-gray-50"
                   onClick={() => {
                     toast({
-                      title: `${provider} Login`,
+                      title: `${provider.name} Login`,
                       description: "This feature is coming soon!",
                     });
                   }}
                 >
-                  <span className="sr-only">Sign in with {provider}</span>
-                  <div className="w-5 h-5 flex items-center justify-center">
-                    {provider[0]}
-                  </div>
+                  <span className="sr-only">Sign in with {provider.name}</span>
+                  <provider.icon />
                 </button>
               ))}
             </div>
