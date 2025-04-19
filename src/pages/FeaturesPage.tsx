@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -8,9 +7,9 @@ const FeaturesPage = () => {
 
   const features = [
     {
-      icon: "📸",
-      title: "Snap & Learn",
-      description: "Instantly translate objects in your photos.",
+      icon: "🔍",
+      title: "Visual Recognition",
+      description: "Instantly identify objects and learn their names in multiple languages.",
     },
     {
       icon: "🧠",
