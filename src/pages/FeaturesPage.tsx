@@ -65,11 +65,12 @@ const FeaturesPage = () => {
         </div>
       </div>
 
-      <div className="px-6 pb-8">
+      <div className="px-6 pb-8 flex justify-center items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.2 }}
+          className="w-full max-w-sm"
         >
           <Button
             onClick={() => navigate("/login")}
