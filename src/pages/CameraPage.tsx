@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Upload, Zap, ZapOff, Camera as CameraIcon, Volume2 } from "lucide-react";
+import { ArrowLeft, Upload, Save, Zap, ZapOff, Camera as CameraIcon, Volume2 } from "lucide-react";
 
 const CameraPage = () => {
   const navigate = useNavigate();
@@ -12,25 +12,25 @@ const CameraPage = () => {
       name: "Coffee Grinder",
       pronunciation: "/ˈkɒfi ˈɡraɪndə/",
       translation: "咖啡研磨机",
-      position: { top: "15%", left: "15%" }
+      position: { top: "20%", left: "25%" }
     },
     {
       name: "Espresso Machine",
       pronunciation: "/eˈspresəʊ məˈʃiːn/",
       translation: "咖啡机",
-      position: { top: "15%", left: "45%" }
+      position: { top: "35%", left: "55%" }
     },
     {
       name: "Iced Coffee",
       pronunciation: "/aɪst ˈkɒfi/",
       translation: "冰咖啡",
-      position: { top: "45%", left: "75%" }
+      position: { top: "60%", left: "30%" }
     },
     {
       name: "Chocolate Cake",
       pronunciation: "/ˈtʃɒklət keɪk/",
       translation: "巧克力蛋糕",
-      position: { top: "75%", left: "45%" }
+      position: { top: "70%", left: "65%" }
     }
   ]);
 
@@ -51,6 +51,11 @@ const CameraPage = () => {
     navigate(`/word/${objectName.toLowerCase()}`);
   };
 
+  const handleSaveScene = () => {
+    // Here you would implement the save functionality
+    console.log("Saving current scene with detected objects");
+  };
+
   return (
     <div className="min-h-screen bg-black relative flex flex-col">
       {/* Camera view */}
@@ -63,13 +68,13 @@ const CameraPage = () => {
         ) : (
           // Preview with detected objects
           <div className="w-full h-full flex items-center justify-center relative">
-            <div className="bg-gray-800 w-full h-full opacity-30 absolute inset-0" />
+            <div className="bg-gray-800 w-full h-full opacity-20 absolute inset-0" />
             
             {/* Object overlays */}
             {detectedObjects.map((object, index) => (
               <div
                 key={index}
-                className="absolute z-10"
+                className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2"
                 style={{ top: object.position.top, left: object.position.left }}
               >
                 <div className="bg-[#F2F5E4] bg-opacity-90 rounded-xl p-3 shadow-lg">
@@ -80,16 +85,16 @@ const CameraPage = () => {
                     <span className="text-xs text-gray-600">{object.pronunciation}</span>
                     <button 
                       onClick={() => playPronunciation(object.name)}
-                      className="p-1"
+                      className="p-1 hover:text-wordsnap-primary-green"
                     >
-                      <Volume2 className="w-4 h-4 text-gray-600" />
+                      <Volume2 className="w-4 h-4" />
                     </button>
                   </div>
                   <div className="flex items-center justify-between mt-1">
                     <span className="text-sm text-gray-700">{object.translation}</span>
                     <button 
                       onClick={() => handleAddWord(object.name)}
-                      className="ml-2 w-6 h-6 flex items-center justify-center rounded-full bg-wordsnap-primary-green"
+                      className="ml-2 w-6 h-6 flex items-center justify-center rounded-full bg-wordsnap-primary-green text-white"
                     >
                       +
                     </button>
@@ -133,8 +138,11 @@ const CameraPage = () => {
             className="w-20 h-20 rounded-full bg-white border-4 border-gray-700"
           />
           
-          <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
-            <CameraIcon className="w-6 h-6 text-white" />
+          <button 
+            onClick={handleSaveScene}
+            className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center"
+          >
+            <Save className="w-6 h-6 text-white" />
           </button>
         </div>
       </div>
