@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { User, UserPlus, Mail, Phone } from "lucide-react";
+import { User, UserPlus, Google, Wechat } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -15,51 +15,28 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const socialProviders = [
-    { 
-      name: "Google", 
-      icon: () => (
-        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <path d="M8 12 h8"></path>
-          <path d="M12 8 v8"></path>
-        </svg>
-      )
-    },
-    { 
-      name: "WeChat", 
-      icon: () => (
-        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-          <path d="M15 20a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path>
-          <path d="M9 16a4 4 0 0 0 6-4"></path>
-        </svg>
-      )
-    },
-    { 
-      name: "Xiaohongshu", 
-      icon: () => (
-        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-        </svg>
-      )
-    },
-    { 
-      name: "Weibo", 
-      icon: () => (
-        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M20 12a8 8 0 0 0-8-8"></path>
-          <path d="M4 12a8 8 0 0 1 8-8"></path>
-          <path d="M12 4v8"></path>
-          <circle cx="12" cy="16" r="4"></circle>
-        </svg>
-      )
-    }
+    { name: "Google", icon: Google },
+    { name: "WeChat", icon: Wechat },
+    { name: "Xiaohongshu", icon: () => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      </svg>
+    )},
+    { name: "Weibo", icon: () => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 12a8 8 0 0 0-8-8"/>
+        <path d="M4 12a8 8 0 0 1 8-8"/>
+        <path d="M12 4v8"/>
+        <circle cx="12" cy="16" r="4"/>
+      </svg>
+    )}
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
+    // Simulate authentication process
     setTimeout(() => {
       setIsLoading(false);
       toast({
@@ -86,14 +63,8 @@ const LoginPage = () => {
         <div className="bg-white rounded-xl shadow-sm p-6">
           <Tabs defaultValue="email" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-6">
-              <TabsTrigger value="email" className="flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                <span>Email</span>
-              </TabsTrigger>
-              <TabsTrigger value="phone" className="flex items-center gap-2">
-                <Phone className="w-4 h-4" />
-                <span>Phone</span>
-              </TabsTrigger>
+              <TabsTrigger value="email">Email</TabsTrigger>
+              <TabsTrigger value="phone">Phone</TabsTrigger>
             </TabsList>
             
             <TabsContent value="email">
@@ -186,7 +157,7 @@ const LoginPage = () => {
                   }}
                 >
                   <span className="sr-only">Sign in with {provider.name}</span>
-                  <provider.icon />
+                  <provider.icon className="w-5 h-5" />
                 </button>
               ))}
             </div>
