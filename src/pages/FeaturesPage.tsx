@@ -75,7 +75,7 @@ const FeaturesPage = () => {
           onClick={() => navigate("/login")}
           className="w-full py-4 text-base bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90 rounded-full font-bold text-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          Get Started →
+          Continue →
         </Button>
       </motion.div>
     </div>
