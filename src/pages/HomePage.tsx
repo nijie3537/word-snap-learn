@@ -29,14 +29,14 @@ const HomePage = () => {
   const [aiSuggestions] = useState([
     {
       id: 1,
-      category: "Coffee Tools",
-      words: ["Coffee Scale", "Coffee Filter", "Tamper"],
+      category: "Coffee Types",
+      words: ["Espresso", "Cappuccino", "Americano"],
       image: "/lovable-uploads/3972fc6f-677c-48b1-8cdf-257e78b7988d.png"
     },
     {
       id: 2,
-      category: "Coffee Types",
-      words: ["Espresso", "Cappuccino", "Americano"],
+      category: "Coffee Tools",
+      words: ["Coffee Scale", "Coffee Filter", "Tamper"],
       image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     }
   ]);
