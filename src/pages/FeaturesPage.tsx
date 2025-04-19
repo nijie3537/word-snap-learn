@@ -25,18 +25,18 @@ const FeaturesPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-wordsnap-bg-light flex flex-col justify-between p-6">
+    <div className="h-screen bg-wordsnap-bg-light flex flex-col px-6 py-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-center mb-2"
+        className="text-center"
       >
         <h1 className="text-xl font-bold text-gray-800">Key Features</h1>
       </motion.div>
 
-      <div className="flex-grow flex flex-col justify-center">
-        <div className="grid gap-6">
+      <div className="flex-1 flex items-center justify-center">
+        <div className="grid gap-4 w-full max-w-sm">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -47,15 +47,15 @@ const FeaturesPage = () => {
                 transition: { duration: 0.2 }
               }}
               transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <div className="flex items-start gap-3">
-                <div className="text-3xl">{feature.icon}</div>
+                <div className="text-2xl">{feature.icon}</div>
                 <div>
-                  <h2 className="text-base font-bold text-gray-800 mb-1">
+                  <h2 className="text-sm font-bold text-gray-800">
                     {feature.title}
                   </h2>
-                  <p className="text-gray-600 text-sm leading-snug">
+                  <p className="text-xs text-gray-600 leading-tight">
                     {feature.description}
                   </p>
                 </div>
@@ -69,7 +69,6 @@ const FeaturesPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1.2 }}
-        className="mt-2"
       >
         <Button
           onClick={() => navigate("/login")}
@@ -83,3 +82,4 @@ const FeaturesPage = () => {
 };
 
 export default FeaturesPage;
+
