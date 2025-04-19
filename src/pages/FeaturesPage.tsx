@@ -1,26 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
-const FeatureCard = ({ icon, title, description }: { icon: string, title: string, description: string }) => {
-  return (
-    <motion.div 
-      className="bg-white rounded-xl p-5 shadow-sm mb-4"
-      whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="flex items-start">
-        <div className="text-3xl mr-4">{icon}</div>
-        <div>
-          <h3 className="font-semibold text-gray-800 mb-1">{title}</h3>
-          <p className="text-sm text-gray-600">{description}</p>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
+import { Button } from "@/components/ui/button";
 
 const FeaturesPage = () => {
   const navigate = useNavigate();
@@ -44,39 +25,49 @@ const FeaturesPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-wordsnap-bg-light flex flex-col items-center px-6 pt-12 pb-6">
-      <motion.div 
-        className="w-full max-w-md"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+    <div className="min-h-screen bg-wordsnap-bg-light flex flex-col justify-between p-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-center mb-8 mt-12"
       >
-        <h1 className="text-3xl font-bold text-center mb-2">Word Snap</h1>
-        <p className="text-center text-gray-600 mb-8">Enhance your vocabulary effortlessly</p>
-        
-        <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Welcome to Word Snap</h1>
+        <p className="text-gray-600">Learn vocabulary through your camera lens</p>
+      </motion.div>
+
+      <div className="flex-grow flex flex-col justify-center">
+        <div className="space-y-8">
           {features.map((feature, index) => (
-            <FeatureCard
+            <motion.div
               key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-            />
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
+              className="flex items-start"
+            >
+              <div className="text-4xl mr-4">{feature.icon}</div>
+              <div>
+                <h2 className="text-xl font-semibold mb-1">{feature.title}</h2>
+                <p className="text-gray-600">{feature.description}</p>
+              </div>
+            </motion.div>
           ))}
         </div>
-        
-        <motion.button
-          onClick={() => navigate("/camera")}
-          className="w-full py-3 px-6 text-center bg-wordsnap-primary-green rounded-full font-medium text-gray-800 shadow-lg"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.2 }}
+        className="mt-8"
+      >
+        <Button
+          onClick={() => navigate("/login")}
+          className="w-full py-6 text-lg bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90 rounded-full"
         >
-          → Get Started
-        </motion.button>
-        
-        <p className="text-xs text-center text-gray-500 mt-6">
-          By continuing, you agree to our Terms and Privacy Policy
-        </p>
+          Get Started →
+        </Button>
       </motion.div>
     </div>
   );

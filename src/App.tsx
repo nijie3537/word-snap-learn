@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppMetadata from "./components/AppMetadata";
 import SplashScreen from "./pages/SplashScreen";
 import FeaturesPage from "./pages/FeaturesPage";
+import LoginPage from "./pages/LoginPage";
+import LanguageSelectionPage from "./pages/LanguageSelectionPage";
 import CameraPage from "./pages/CameraPage";
 import HomePage from "./pages/HomePage";
 import WordbookPage from "./pages/WordbookPage";
@@ -28,6 +31,8 @@ const App = () => (
           <Routes>
             <Route path="/" element={<SplashScreen />} />
             <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/language-selection" element={<LanguageSelectionPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/wordbook" element={<WordbookPage />} />
             <Route path="/camera" element={<CameraPage />} />
