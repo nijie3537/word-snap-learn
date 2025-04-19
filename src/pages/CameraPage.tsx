@@ -116,35 +116,25 @@ const CameraPage = () => {
   return (
     <div className="min-h-screen bg-black flex flex-col">
       <div className="absolute top-6 inset-x-0 px-6 flex justify-between items-center z-10">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center h-12">
           <button 
             onClick={handleBack}
             className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
           >
             <ArrowLeft className="w-6 h-6 text-white" />
           </button>
-          <button 
-            onClick={() => {}} // Placeholder for upload functionality
-            className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
-          >
-            <Upload className="w-6 h-6 text-white" />
-          </button>
         </div>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center h-12">
           <button 
             onClick={toggleDemo}
             className="h-12 px-4 rounded-full bg-black bg-opacity-50 text-white"
           >
             Demo
           </button>
-          <button 
-            onClick={handleCapture}
-            className="h-12 w-16 rounded-full bg-white border-4 border-gray-700 flex items-center justify-center"
-          />
         </div>
         
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center h-12">
           <button 
             onClick={toggleFlash}
             className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
@@ -154,12 +144,6 @@ const CameraPage = () => {
             ) : (
               <ZapOff className="w-6 h-6 text-white" />
             )}
-          </button>
-          <button 
-            onClick={handleSaveScene}
-            className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
-          >
-            <Save className="w-5 h-5 text-white" />
           </button>
         </div>
       </div>
