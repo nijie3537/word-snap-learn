@@ -30,13 +30,13 @@ const FeaturesPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-center mb-4"
+        className="text-center mb-2"
       >
-        <h1 className="text-xl font-bold mb-2 text-gray-800">Key Features</h1>
+        <h1 className="text-xl font-bold text-gray-800">Key Features</h1>
       </motion.div>
 
       <div className="flex-grow flex flex-col justify-center">
-        <div className="grid gap-4">
+        <div className="grid gap-6">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -69,7 +69,7 @@ const FeaturesPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1.2 }}
-        className="mt-6"
+        className="mt-2"
       >
         <Button
           onClick={() => navigate("/login")}
