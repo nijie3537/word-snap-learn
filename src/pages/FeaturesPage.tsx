@@ -30,10 +30,9 @@ const FeaturesPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-center mb-8 mt-8"
+        className="text-center mb-4"
       >
-        <h1 className="text-xl font-bold mb-3">Welcome to Word Snap</h1>
-        <p className="text-gray-600 text-sm">Learn vocabulary through your camera lens</p>
+        <h1 className="text-xl font-bold mb-2 text-gray-800">Key Features</h1>
       </motion.div>
 
       <div className="flex-grow flex flex-col justify-center">
