@@ -102,7 +102,7 @@ const CameraPage = () => {
   };
 
   const handleAddWord = (objectName: string) => {
-    navigate(`/word/${objectName.toLowerCase()}`);
+    navigate(`/word/${objectName.toLowerCase().replace(' ', '-')}`);
   };
 
   const handleSaveScene = () => {

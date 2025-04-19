@@ -21,42 +21,76 @@ const wordDatabase = {
         source: "Collins Dictionary"
       }
     ],
-    image: '/lovable-uploads/photo-1498050108023-c5249f4df085.jpg',
+    image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
     reference: "A modern coffee machine"
   },
-  "monkey": {
-    phonetic: "/ˈmʌŋki/",
-    translation: "猴子 (Hóuzi)",
-    memoryHack: "Picture a playful creature swinging from tree to tree, just like the word 'monkey' bounces off your tongue!",
+  "coffee grinder": {
+    phonetic: "/ˈkɒfi ˈɡraɪndə/",
+    translation: "咖啡研磨机 (Kāfēi yánmó jī)",
+    memoryHack: "Picture the grinding sound - it's like the machine is speaking the word 'grinder' as it works!",
     examples: [
       {
-        text: "The monkey peeled the banana with remarkable dexterity.",
-        source: "Longman Dictionary"
+        text: "A good coffee grinder is essential for fresh coffee.",
+        source: "Coffee Magazine"
       },
       {
-        text: "A group of monkeys lived in harmony in the ancient temple.",
-        source: "Oxford Dictionary"
+        text: "He adjusted the coffee grinder to a finer setting.",
+        source: "Barista Handbook"
       }
     ],
-    image: '/lovable-uploads/photo-1501286353178-1ec881214838.jpg',
-    reference: "A monkey holding a banana"
+    image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    reference: "A professional coffee grinder"
   },
-  "kitten": {
-    phonetic: "/ˈkɪtn/",
-    translation: "小猫 (Xiǎomāo)",
-    memoryHack: "Think of the soft 'kit' sound at the start - as gentle as a kitten's paw!",
+  "milk pitcher": {
+    phonetic: "/mɪlk ˈpɪtʃə/",
+    translation: "奶壶 (Nǎi hú)",
+    memoryHack: "Think of it as the pitcher that 'pitches' milk into your coffee with perfect precision!",
     examples: [
       {
-        text: "The kitten curled up in a ball of fur on the windowsill.",
-        source: "Cambridge Dictionary"
+        text: "The barista swirled the milk in the pitcher to create microfoam.",
+        source: "Barista Weekly"
       },
       {
-        text: "She adopted a playful kitten from the local shelter.",
-        source: "Merriam-Webster"
+        text: "A stainless steel milk pitcher is preferred for steaming milk.",
+        source: "Coffee Academy"
       }
     ],
-    image: '/lovable-uploads/photo-1535268647677-300dbf3d78d1.jpg',
-    reference: "An adorable grey tabby kitten"
+    image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    reference: "A stainless steel milk pitcher"
+  },
+  "portafilter": {
+    phonetic: "/ˈpɔːtəfɪltə/",
+    translation: "咖啡滤器 (Kāfēi lǜ qì)",
+    memoryHack: "Think 'porta' (portable) + 'filter' - it's the handle that carries (ports) the coffee filter!",
+    examples: [
+      {
+        text: "Clean your portafilter after each use for the best coffee taste.",
+        source: "Espresso Guide"
+      },
+      {
+        text: "The barista locked the portafilter into the group head.",
+        source: "Coffee Training Manual"
+      }
+    ],
+    image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    reference: "An espresso machine portafilter"
+  },
+  "coffee tamper": {
+    phonetic: "/ˈkɒfi ˈtæmpə/",
+    translation: "咖啡压粉器 (Kāfēi yā fěn qì)",
+    memoryHack: "Remember it 'tamps' (presses down) the coffee - the word sounds like the action it performs!",
+    examples: [
+      {
+        text: "Apply consistent pressure when using the coffee tamper.",
+        source: "Barista Basics"
+      },
+      {
+        text: "A good coffee tamper helps create the perfect espresso shot.",
+        source: "Coffee Craft Magazine"
+      }
+    ],
+    image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
+    reference: "A professional coffee tamper"
   }
 };
 
