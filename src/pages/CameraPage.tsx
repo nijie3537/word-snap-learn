@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Upload, Save, Zap, ZapOff, Volume2 } from "lucide-react";
@@ -24,7 +23,7 @@ const CameraPage = () => {
       name: "Coffee Grinder",
       pronunciation: "/ˈkɒfi ˈɡraɪndə/",
       translation: "咖啡研磨机",
-      position: { top: "30%", left: "75%" }  // Moved further right
+      position: { top: "30%", left: "85%" }  // Moved even further right
     },
     {
       name: "Milk Pitcher",
@@ -117,30 +116,36 @@ const CameraPage = () => {
   return (
     <div className="min-h-screen bg-black flex flex-col">
       <div className="absolute top-6 inset-x-0 px-6 flex justify-between items-center z-10">
-        <button 
-          onClick={handleBack}
-          className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
-        >
-          <ArrowLeft className="w-6 h-6 text-white" />
-        </button>
+        <div className="flex items-center h-12">
+          <button 
+            onClick={handleBack}
+            className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
+          >
+            <ArrowLeft className="w-6 h-6 text-white" />
+          </button>
+        </div>
         
-        <button 
-          onClick={toggleDemo}
-          className="px-4 py-2 rounded-full bg-black bg-opacity-50 text-white"
-        >
-          Demo
-        </button>
+        <div className="flex items-center h-12">
+          <button 
+            onClick={toggleDemo}
+            className="h-12 px-4 rounded-full bg-black bg-opacity-50 text-white"
+          >
+            Demo
+          </button>
+        </div>
         
-        <button 
-          onClick={toggleFlash}
-          className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
-        >
-          {flashOn ? (
-            <Zap className="w-6 h-6 text-white" />
-          ) : (
-            <ZapOff className="w-6 h-6 text-white" />
-          )}
-        </button>
+        <div className="flex items-center h-12">
+          <button 
+            onClick={toggleFlash}
+            className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
+          >
+            {flashOn ? (
+              <Zap className="w-6 h-6 text-white" />
+            ) : (
+              <ZapOff className="w-6 h-6 text-white" />
+            )}
+          </button>
+        </div>
       </div>
 
       <div className="flex-1 relative overflow-hidden flex items-center justify-center mt-16">
