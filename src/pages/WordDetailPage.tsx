@@ -22,7 +22,7 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
-    objectPosition: "top",
+    objectPosition: "top", // Focusing on coffee machine area
     reference: "A modern coffee machine"
   },
   "coffee-grinder": {
@@ -40,7 +40,7 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
-    objectPosition: "center right",
+    objectPosition: "80% 50%", // Focusing on grinder area
     reference: "A professional coffee grinder"
   },
   "milk-pitcher": {
@@ -58,7 +58,7 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
-    objectPosition: "center left",
+    objectPosition: "20% 50%", // Focusing on milk pitcher area
     reference: "A stainless steel milk pitcher"
   },
   "portafilter": {
@@ -76,7 +76,7 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
-    objectPosition: "bottom left",
+    objectPosition: "20% 80%", // Focusing on portafilter area
     reference: "An espresso machine portafilter"
   },
   "coffee-tamper": {
@@ -94,7 +94,7 @@ const wordDatabase = {
       }
     ],
     image: '/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png',
-    objectPosition: "bottom right",
+    objectPosition: "80% 80%", // Focusing on tamper area
     reference: "A professional coffee tamper"
   }
 };
