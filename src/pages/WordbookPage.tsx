@@ -1,10 +1,14 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { motion } from "framer-motion";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { X } from "lucide-react";
 
 const WordbookPage = () => {
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   // Mock data
   const [words] = useState([
@@ -37,6 +41,25 @@ const WordbookPage = () => {
       image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png"
     }
   ]);
+
+  // Group words by image to show word count
+  const imageGroups = words.reduce((acc: { [key: string]: { words: string[], date: string } }, word) => {
+    if (!acc[word.image]) {
+      acc[word.image] = { words: [], date: word.date };
+    }
+    acc[word.image].words.push(word.word);
+    return acc;
+  }, {});
+
+  const sortedImages = Object.entries(imageGroups)
+    .sort((a, b) => {
+      // Convert dates to comparable values (assuming format "X days/weeks ago")
+      const getDateValue = (date: string) => {
+        const num = parseInt(date);
+        return date.includes('week') ? num * 7 : num;
+      };
+      return getDateValue(a[1].date) - getDateValue(b[1].date);
+    });
 
   return (
     <div className="min-h-screen bg-wordsnap-bg-light pb-20">
@@ -79,22 +102,23 @@ const WordbookPage = () => {
           
           <TabsContent value="collections">
             <div className="grid grid-cols-2 gap-3">
-              {words.map((item) => (
+              {sortedImages.map(([image, data], index) => (
                 <motion.div
-                  key={item.id}
+                  key={index}
                   className="bg-white rounded-xl overflow-hidden shadow-sm"
                   whileHover={{ y: -3 }}
+                  onClick={() => setSelectedImage(image)}
                 >
                   <div className="h-32 bg-gray-100">
                     <img 
-                      src={item.image} 
-                      alt={item.word}
+                      src={image} 
+                      alt={`Collection ${index + 1}`}
                       className="w-full h-full object-cover" 
                     />
                   </div>
                   <div className="p-3">
-                    <h3 className="font-medium">{item.word}</h3>
-                    <p className="text-xs text-gray-600">{item.date}</p>
+                    <p className="text-sm font-medium">{data.words.length} words</p>
+                    <p className="text-xs text-gray-600">{data.date}</p>
                   </div>
                 </motion.div>
               ))}
@@ -115,6 +139,41 @@ const WordbookPage = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="sm:max-w-[90%] p-0">
+          <button 
+            onClick={() => setSelectedImage(null)}
+            className="absolute right-4 top-4 z-10 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <div className="p-0">
+            {selectedImage && (
+              <div>
+                <img 
+                  src={selectedImage} 
+                  alt="Full size" 
+                  className="w-full h-auto"
+                />
+                <div className="p-4 bg-white">
+                  <h3 className="font-medium mb-2">Words in this image:</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {imageGroups[selectedImage].words.map((word, index) => (
+                      <span 
+                        key={index}
+                        className="bg-wordsnap-bg-light px-3 py-1 rounded-full text-sm"
+                      >
+                        {word}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
