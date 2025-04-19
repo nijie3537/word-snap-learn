@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Volume } from "lucide-react";
@@ -20,7 +19,7 @@ const WordDetailPage = () => {
       "She invested in a high-end coffee machine for her café."
     ],
     media: {
-      image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png",
+      image: "/lovable-uploads/photo-1721322800607-8c38375eef04.jpg",
       reference: "From a professional coffee shop setting"
     }
   };
@@ -123,4 +122,3 @@ const WordDetailPage = () => {
 };
 
 export default WordDetailPage;
-
