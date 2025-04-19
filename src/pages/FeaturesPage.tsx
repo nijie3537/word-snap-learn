@@ -35,7 +35,7 @@ const FeaturesPage = () => {
         <h1 className="text-xl font-bold text-gray-800">Key Features</h1>
       </motion.div>
 
-      <div className="flex-1 grid gap-2 w-full max-w-sm mx-auto px-4">
+      <div className="flex-1 grid gap-4 w-full max-w-sm mx-auto px-4">
         {features.map((feature, index) => (
           <motion.div
             key={index}
@@ -46,7 +46,7 @@ const FeaturesPage = () => {
               transition: { duration: 0.2 }
             }}
             transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
-            className="bg-white/80 backdrop-blur-sm rounded-xl p-2 shadow-sm hover:shadow-md transition-all duration-300"
+            className="bg-white/80 backdrop-blur-sm rounded-xl p-2 shadow-sm hover:shadow-md transition-all duration-300 h-20 flex items-center"
           >
             <div className="flex items-center gap-3">
               <div className="text-2xl">{feature.icon}</div>
