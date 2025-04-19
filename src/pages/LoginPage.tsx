@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -13,6 +14,48 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  const socialProviders = [
+    { 
+      name: "Google", 
+      icon: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M17.13 17.13L6.87 6.87"/>
+          <path d="M17.13 6.87L6.87 17.13"/>
+        </svg>
+      ) 
+    },
+    { 
+      name: "WeChat", 
+      icon: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+          <path d="M15 20a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+          <path d="M9 12h6"/>
+        </svg>
+      ) 
+    },
+    { 
+      name: "Xiaohongshu", 
+      icon: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      )
+    },
+    { 
+      name: "Weibo", 
+      icon: () => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 12a8 8 0 0 0-8-8"/>
+          <path d="M4 12a8 8 0 0 1 8-8"/>
+          <path d="M12 4v8"/>
+          <circle cx="12" cy="16" r="4"/>
+        </svg>
+      )
+    }
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -126,22 +169,20 @@ const LoginPage = () => {
             </div>
 
             <div className="mt-6 grid grid-cols-4 gap-3">
-              {["Google", "WeChat", "Xiaohongshu", "Weibo"].map((provider) => (
+              {socialProviders.map((provider) => (
                 <button
-                  key={provider}
+                  key={provider.name}
                   type="button"
                   className="inline-flex justify-center items-center p-3 border border-gray-200 rounded-md shadow-sm bg-white hover:bg-gray-50"
                   onClick={() => {
                     toast({
-                      title: `${provider} Login`,
+                      title: `${provider.name} Login`,
                       description: "This feature is coming soon!",
                     });
                   }}
                 >
-                  <span className="sr-only">Sign in with {provider}</span>
-                  <div className="w-5 h-5 flex items-center justify-center">
-                    {provider[0]}
-                  </div>
+                  <span className="sr-only">Sign in with {provider.name}</span>
+                  <provider.icon />
                 </button>
               ))}
             </div>
