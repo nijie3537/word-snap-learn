@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { User, UserPlus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -148,6 +148,22 @@ const LoginPage = () => {
           </div>
         </div>
       </motion.div>
+
+      <div className="mt-4 text-center">
+        <div className="flex items-center justify-center gap-2 text-gray-600">
+          <UserPlus className="w-5 h-5" />
+          <p className="text-sm">
+            No account? 
+            <Button 
+              variant="link" 
+              className="text-wordsnap-primary-green px-1"
+              onClick={() => navigate("/signup")}
+            >
+              Register now
+            </Button>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
