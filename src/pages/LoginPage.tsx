@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { User, UserPlus, Google, Wechat } from "lucide-react";
+import { User, UserPlus } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -13,24 +13,6 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const socialProviders = [
-    { name: "Google", icon: Google },
-    { name: "WeChat", icon: Wechat },
-    { name: "Xiaohongshu", icon: () => (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-      </svg>
-    )},
-    { name: "Weibo", icon: () => (
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M20 12a8 8 0 0 0-8-8"/>
-        <path d="M4 12a8 8 0 0 1 8-8"/>
-        <path d="M12 4v8"/>
-        <circle cx="12" cy="16" r="4"/>
-      </svg>
-    )}
-  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -144,20 +126,22 @@ const LoginPage = () => {
             </div>
 
             <div className="mt-6 grid grid-cols-4 gap-3">
-              {socialProviders.map((provider) => (
+              {["Google", "WeChat", "Xiaohongshu", "Weibo"].map((provider) => (
                 <button
-                  key={provider.name}
+                  key={provider}
                   type="button"
                   className="inline-flex justify-center items-center p-3 border border-gray-200 rounded-md shadow-sm bg-white hover:bg-gray-50"
                   onClick={() => {
                     toast({
-                      title: `${provider.name} Login`,
+                      title: `${provider} Login`,
                       description: "This feature is coming soon!",
                     });
                   }}
                 >
-                  <span className="sr-only">Sign in with {provider.name}</span>
-                  <provider.icon className="w-5 h-5" />
+                  <span className="sr-only">Sign in with {provider}</span>
+                  <div className="w-5 h-5 flex items-center justify-center">
+                    {provider[0]}
+                  </div>
                 </button>
               ))}
             </div>
