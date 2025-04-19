@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -10,13 +11,12 @@ const SplashScreen = () => {
   };
 
   return (
-    <div className="h-[100dvh] bg-wordsnap-bg-light flex flex-col items-center justify-between px-4 py-8">
-      <div className="flex-1" />
+    <div className="h-[100dvh] bg-wordsnap-bg-light flex flex-col items-center justify-center px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center"
+        className="text-center mb-8"
       >
         <div className="relative mb-4">
           <div className="absolute -inset-1 bg-wordsnap-primary-green rounded-full blur opacity-30"></div>
