@@ -9,19 +9,19 @@ const WordDetailPage = () => {
   const navigate = useNavigate();
   const [playingAudio, setPlayingAudio] = useState(false);
 
-  // Mock data - would be fetched from an API in a real app
+  // Updated mock data to match the coffee-related demo content
   const wordData = {
-    word: word || "radish",
-    phonetic: "/ˈrædɪʃ/",
-    translation: "萝卜 (Luóbo)",
-    memoryHack: "Think of radish as a 'red dish' - many radishes have a reddish color!",
+    word: word || "Coffee Machine",
+    phonetic: "/ˈkɒfi məˈʃiːn/",
+    translation: "咖啡机 (Kāfēi jī)",
+    memoryHack: "Think of it as the magical machine that transforms simple beans into liquid gold - your morning coffee!",
     examples: [
-      "Add radish to salads for a peppery crunch.",
-      "Radish is often used in Asian cuisines for its crisp texture."
+      "The coffee machine needs to be cleaned regularly.",
+      "She invested in a high-end coffee machine for her café."
     ],
     media: {
-      image: "/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png",
-      reference: "Movie Reference: Ratatouille (2007)"
+      image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png",
+      reference: "From a professional coffee shop setting"
     }
   };
 
@@ -123,3 +123,4 @@ const WordDetailPage = () => {
 };
 
 export default WordDetailPage;
+
