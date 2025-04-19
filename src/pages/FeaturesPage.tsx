@@ -63,7 +63,7 @@ const FeaturesPage = () => {
         ))}
       </div>
 
-      <div className="px-6 pb-8 flex justify-center items-center mt-6">
+      <div className="px-6 pb-8 flex justify-center items-center mt-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,3 +83,4 @@ const FeaturesPage = () => {
 };
 
 export default FeaturesPage;
+
