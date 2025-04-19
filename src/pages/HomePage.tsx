@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -6,25 +5,24 @@ import { motion } from "framer-motion";
 const HomePage = () => {
   const navigate = useNavigate();
   
-  // Mock data - would come from an API in a real app
   const [reviewWords] = useState([
     {
       id: 1,
-      word: "Radish",
-      translation: "萝卜",
-      image: "/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png"
+      word: "Coffee Machine",
+      translation: "咖啡机",
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     },
     {
       id: 2,
-      word: "Coriander",
-      translation: "香菜",
-      image: "/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png"
+      word: "Coffee Grinder",
+      translation: "咖啡研磨机",
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     },
     {
       id: 3,
-      word: "Mascara",
-      translation: "睫毛膏",
-      image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png"
+      word: "Milk Pitcher",
+      translation: "奶壶",
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     }
   ]);
   
@@ -32,14 +30,14 @@ const HomePage = () => {
     {
       id: 1,
       category: "Coffee Tools",
-      words: ["Espresso Cup", "Croissant"],
+      words: ["Coffee Scale", "Coffee Filter", "Tamper"],
       image: "/lovable-uploads/3972fc6f-677c-48b1-8cdf-257e78b7988d.png"
     },
     {
       id: 2,
-      category: "Makeup Items",
-      words: ["Foundation", "Eyeshadow Palette"],
-      image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png"
+      category: "Coffee Types",
+      words: ["Espresso", "Cappuccino", "Americano"],
+      image: "/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
     }
   ]);
 
