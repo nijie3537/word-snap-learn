@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Upload, Zap, ZapOff, Camera as CameraIcon } from "lucide-react";
+import { ArrowLeft, Upload, Zap, ZapOff, Camera as CameraIcon, Volume2 } from "lucide-react";
 
 const CameraPage = () => {
   const navigate = useNavigate();
@@ -42,6 +42,11 @@ const CameraPage = () => {
     setShowPreview(true);
   };
 
+  const playPronunciation = (word: string) => {
+    // Here you would integrate with Youdao Dictionary API
+    console.log(`Playing pronunciation for: ${word}`);
+  };
+
   const handleAddWord = (objectName: string) => {
     navigate(`/word/${objectName.toLowerCase()}`);
   };
@@ -58,7 +63,7 @@ const CameraPage = () => {
         ) : (
           // Preview with detected objects
           <div className="w-full h-full flex items-center justify-center relative">
-            <div className="bg-gray-800 w-full h-full opacity-60 absolute inset-0" />
+            <div className="bg-gray-800 w-full h-full opacity-30 absolute inset-0" />
             
             {/* Object overlays */}
             {detectedObjects.map((object, index) => (
@@ -67,23 +72,28 @@ const CameraPage = () => {
                 className="absolute z-10"
                 style={{ top: object.position.top, left: object.position.left }}
               >
-                <div className="bg-[#F2F5E4] rounded-xl p-4 shadow-lg max-w-[200px]">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-1">
+                <div className="bg-[#F2F5E4] bg-opacity-90 rounded-xl p-3 shadow-lg">
+                  <h3 className="text-base font-medium text-gray-800">
                     {object.name}
                   </h3>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm text-gray-600">{object.pronunciation}</span>
-                    <button className="w-6 h-6 flex items-center justify-center rounded-full bg-wordsnap-primary-green">
-                      🔊
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-xs text-gray-600">{object.pronunciation}</span>
+                    <button 
+                      onClick={() => playPronunciation(object.name)}
+                      className="p-1"
+                    >
+                      <Volume2 className="w-4 h-4 text-gray-600" />
                     </button>
                   </div>
-                  <p className="text-sm text-gray-700 mb-2">{object.translation}</p>
-                  <button 
-                    onClick={() => handleAddWord(object.name)}
-                    className="bg-wordsnap-primary-green text-black text-sm py-1 px-3 rounded-lg w-full flex items-center justify-center"
-                  >
-                    + Add to Wordbook
-                  </button>
+                  <div className="flex items-center justify-between mt-1">
+                    <span className="text-sm text-gray-700">{object.translation}</span>
+                    <button 
+                      onClick={() => handleAddWord(object.name)}
+                      className="ml-2 w-6 h-6 flex items-center justify-center rounded-full bg-wordsnap-primary-green"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -113,37 +123,20 @@ const CameraPage = () => {
           </button>
         </div>
         
-        {!showPreview ? (
-          <div className="flex justify-between items-center px-8">
-            <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
-              <Upload className="w-6 h-6 text-white" />
-            </button>
-            
-            <button 
-              onClick={handleCapture}
-              className="w-20 h-20 rounded-full bg-white border-4 border-gray-700"
-            />
-            
-            <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
-              <CameraIcon className="w-6 h-6 text-white" />
-            </button>
-          </div>
-        ) : (
-          <div className="flex justify-around">
-            <button 
-              onClick={() => setShowPreview(false)}
-              className="bg-wordsnap-primary-green text-black py-2 px-6 rounded-full"
-            >
-              Retake
-            </button>
-            <button 
-              onClick={() => navigate("/wordbook")}
-              className="bg-wordsnap-primary-green text-black py-2 px-6 rounded-full"
-            >
-              Save All
-            </button>
-          </div>
-        )}
+        <div className="flex justify-between items-center px-8">
+          <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
+            <Upload className="w-6 h-6 text-white" />
+          </button>
+          
+          <button 
+            onClick={handleCapture}
+            className="w-20 h-20 rounded-full bg-white border-4 border-gray-700"
+          />
+          
+          <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
+            <CameraIcon className="w-6 h-6 text-white" />
+          </button>
+        </div>
       </div>
     </div>
   );

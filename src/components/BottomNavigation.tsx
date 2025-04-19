@@ -6,7 +6,7 @@ const BottomNavigation = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // Don't show navigation on these paths
+  // Don't show navigation on camera and other specified paths
   const hiddenPaths = ["/", "/features", "/camera"];
   if (hiddenPaths.includes(currentPath)) {
     return null;
