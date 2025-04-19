@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 const SplashScreen = () => {
   const navigate = useNavigate();
@@ -17,6 +18,10 @@ const SplashScreen = () => {
 
     return () => clearTimeout(timer);
   }, [navigate]);
+
+  const handleGetStarted = () => {
+    navigate("/features");
+  };
 
   return (
     <div className="min-h-screen bg-wordsnap-bg-light flex flex-col items-center justify-center px-4">
@@ -54,6 +59,20 @@ const SplashScreen = () => {
         >
           Learn Vocabulary through Your Lens – AI-Powered Language Mastery
         </motion.p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        className="mt-8 w-full max-w-xs px-4"
+      >
+        <Button 
+          onClick={handleGetStarted}
+          className="w-full py-4 text-base bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90 rounded-full font-bold text-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
+        >
+          Get Started →
+        </Button>
       </motion.div>
     </div>
   );
