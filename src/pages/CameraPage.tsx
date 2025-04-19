@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Upload, Save, Zap, ZapOff, Volume2 } from "lucide-react";
@@ -35,13 +34,13 @@ const CameraPage = () => {
       name: "Portafilter",
       pronunciation: "/ˈpɔːtəfɪltə/",
       translation: "咖啡滤器",
-      position: { top: "85%", left: "35%" }
+      position: { top: "80%", left: "30%" }
     },
     {
       name: "Coffee Tamper",
       pronunciation: "/ˈkɒfi ˈtæmpə/",
       translation: "咖啡压粉器",
-      position: { top: "85%", left: "65%" }
+      position: { top: "80%", left: "70%" }
     }
   ]);
 
