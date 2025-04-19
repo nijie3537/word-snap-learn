@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Volume } from "lucide-react";
@@ -8,15 +9,21 @@ const WordDetailPage = () => {
   const navigate = useNavigate();
   const [playingAudio, setPlayingAudio] = useState(false);
 
-  // Updated mock data to match the coffee-related demo content
+  // Updated mock data to include sources for examples
   const wordData = {
     word: word || "Coffee Machine",
     phonetic: "/ˈkɒfi məˈʃiːn/",
     translation: "咖啡机 (Kāfēi jī)",
     memoryHack: "Think of it as the magical machine that transforms simple beans into liquid gold - your morning coffee!",
     examples: [
-      "The coffee machine needs to be cleaned regularly.",
-      "She invested in a high-end coffee machine for her café."
+      {
+        text: "The coffee machine needs to be cleaned regularly.",
+        source: "Cambridge Dictionary"
+      },
+      {
+        text: "She invested in a high-end coffee machine for her café.",
+        source: "Collins Dictionary"
+      }
     ],
     media: {
       image: "/lovable-uploads/photo-1721322800607-8c38375eef04.jpg",
@@ -92,10 +99,15 @@ const WordDetailPage = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
         >
           <h3 className="font-semibold mb-3">Examples</h3>
-          <ul className="space-y-2">
+          <ul className="space-y-3">
             {wordData.examples.map((example, index) => (
-              <li key={index} className="text-sm text-gray-700 bg-wordsnap-bg-alt p-3 rounded-lg">
-                {example}
+              <li key={index} className="text-sm">
+                <p className="bg-wordsnap-bg-alt p-3 rounded-lg text-gray-700">
+                  {example.text}
+                </p>
+                <p className="text-xs text-gray-500 mt-1 ml-2 italic">
+                  Source: {example.source}
+                </p>
               </li>
             ))}
           </ul>
@@ -122,3 +134,4 @@ const WordDetailPage = () => {
 };
 
 export default WordDetailPage;
+
