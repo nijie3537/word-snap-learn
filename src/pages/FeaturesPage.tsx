@@ -25,47 +25,45 @@ const FeaturesPage = () => {
   ];
 
   return (
-    <div className="h-screen bg-wordsnap-bg-light flex flex-col">
-      <div className="flex-1 flex flex-col justify-center gap-6 px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center"
-        >
-          <h1 className="text-xl font-bold text-gray-800">Key Features</h1>
-        </motion.div>
+    <div className="h-screen bg-wordsnap-bg-light flex flex-col justify-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="text-center mb-6"
+      >
+        <h1 className="text-xl font-bold text-gray-800">Key Features</h1>
+      </motion.div>
 
-        <div className="grid gap-4 w-full max-w-sm mx-auto">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.2 }
-              }}
-              transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
-              className="bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <div className="flex items-start gap-3">
-                <div className="text-2xl">{feature.icon}</div>
-                <div>
-                  <h2 className="text-sm font-bold text-gray-800">
-                    {feature.title}
-                  </h2>
-                  <p className="text-xs text-gray-600 leading-tight">
-                    {feature.description}
-                  </p>
-                </div>
+      <div className="grid gap-4 w-full max-w-sm mx-auto">
+        {features.map((feature, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.2 }
+            }}
+            transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
+            className="bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <div className="flex items-start gap-3">
+              <div className="text-2xl">{feature.icon}</div>
+              <div>
+                <h2 className="text-sm font-bold text-gray-800">
+                  {feature.title}
+                </h2>
+                <p className="text-xs text-gray-600 leading-tight">
+                  {feature.description}
+                </p>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-      <div className="px-6 pb-8">
+      <div className="px-6 pb-8 mt-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,3 +82,4 @@ const FeaturesPage = () => {
 };
 
 export default FeaturesPage;
+
