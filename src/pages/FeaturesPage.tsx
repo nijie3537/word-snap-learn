@@ -25,28 +25,28 @@ const FeaturesPage = () => {
   ];
 
   return (
-    <div className="h-screen bg-wordsnap-bg-light flex flex-col justify-center">
+    <div className="h-[100dvh] bg-wordsnap-bg-light flex flex-col justify-between py-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-center mb-4"  // Reduced margin-bottom from mb-6 to mb-4
+        className="text-center mb-4"
       >
         <h1 className="text-xl font-bold text-gray-800">Key Features</h1>
       </motion.div>
 
-      <div className="grid gap-4 w-full max-w-sm mx-auto">
+      <div className="flex-1 grid gap-3 w-full max-w-sm mx-auto px-4">
         {features.map((feature, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             whileHover={{ 
-              scale: 1.05,
+              scale: 1.02,
               transition: { duration: 0.2 }
             }}
             transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
-            className="bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-white/80 backdrop-blur-sm rounded-xl p-3 shadow-sm hover:shadow-md transition-all duration-300"
           >
             <div className="flex items-start gap-3">
               <div className="text-2xl">{feature.icon}</div>
@@ -63,7 +63,7 @@ const FeaturesPage = () => {
         ))}
       </div>
 
-      <div className="px-6 pb-8 flex justify-center items-center mt-12">
+      <div className="px-6 flex justify-center items-center mt-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ const FeaturesPage = () => {
         >
           <Button
             onClick={() => navigate("/login")}
-            className="w-full py-4 text-base bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90 rounded-full font-bold text-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="w-full py-3 text-base bg-wordsnap-primary-green hover:bg-wordsnap-primary-green/90 rounded-full font-bold text-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Continue →
           </Button>
@@ -83,4 +83,3 @@ const FeaturesPage = () => {
 };
 
 export default FeaturesPage;
-
