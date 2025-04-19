@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -45,14 +44,12 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-wordsnap-bg-light pb-20">
-      {/* Header */}
       <div className="bg-wordsnap-primary-green pt-12 pb-4 px-6">
-        <h1 className="text-2xl font-bold mb-1">Hello!</h1>
+        <h1 className="text-2xl font-game mb-1">Word Snap</h1>
         <p className="text-sm">What would you like to learn today?</p>
       </div>
       
       <div className="p-6">
-        {/* Review Section */}
         <section className="mb-8">
           <h2 className="text-lg font-semibold mb-3">Review Today</h2>
           <div className="grid grid-cols-2 gap-3">
@@ -79,7 +76,6 @@ const HomePage = () => {
           </div>
         </section>
         
-        {/* AI Suggestions */}
         <section>
           <h2 className="text-lg font-semibold mb-3">AI-Suggested Words</h2>
           <div className="space-y-4">
