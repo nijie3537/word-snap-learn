@@ -21,7 +21,7 @@ const FeaturesPage = () => {
       icon: "🌍",
       title: "Multi-Language Support",
       description: "Learn 6+ languages seamlessly.",
-    },
+    }
   ];
 
   return (
@@ -83,4 +83,3 @@ const FeaturesPage = () => {
 };
 
 export default FeaturesPage;
-
