@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Upload, Save, Zap, ZapOff, Volume2 } from "lucide-react";
@@ -12,30 +11,36 @@ const CameraPage = () => {
   const [isDemoMode, setIsDemoMode] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
-  const [detectedObjects, setDetectedObjects] = useState([
+  const [detectedObjects] = useState([
+    {
+      name: "Coffee Machine",
+      pronunciation: "/ˈkɒfi məˈʃiːn/",
+      translation: "咖啡机",
+      position: { top: "30%", left: "40%" }
+    },
     {
       name: "Coffee Grinder",
       pronunciation: "/ˈkɒfi ˈɡraɪndə/",
       translation: "咖啡研磨机",
-      position: { top: "20%", left: "25%" }
+      position: { top: "45%", left: "85%" }
     },
     {
-      name: "Espresso Machine",
-      pronunciation: "/eˈspresəʊ məˈʃiːn/",
-      translation: "咖啡机",
-      position: { top: "35%", left: "55%" }
+      name: "Milk Pitcher",
+      pronunciation: "/mɪlk ˈpɪtʃə/",
+      translation: "奶壶",
+      position: { top: "65%", left: "15%" }
     },
     {
-      name: "Iced Coffee",
-      pronunciation: "/aɪst ˈkɒfi/",
-      translation: "冰咖啡",
-      position: { top: "60%", left: "30%" }
+      name: "Portafilter",
+      pronunciation: "/ˈpɔːtəfɪltə/",
+      translation: "咖啡滤器",
+      position: { top: "65%", left: "40%" }
     },
     {
-      name: "Chocolate Cake",
-      pronunciation: "/ˈtʃɒklət keɪk/",
-      translation: "巧克力蛋糕",
-      position: { top: "70%", left: "65%" }
+      name: "Coffee Tamper",
+      pronunciation: "/ˈkɒfi ˈtæmpə/",
+      translation: "咖啡压粉器",
+      position: { top: "65%", left: "70%" }
     }
   ]);
 
@@ -92,7 +97,6 @@ const CameraPage = () => {
   };
 
   const playPronunciation = (word: string) => {
-    // Here you would integrate with Youdao Dictionary API
     console.log(`Playing pronunciation for: ${word}`);
   };
 
@@ -101,7 +105,6 @@ const CameraPage = () => {
   };
 
   const handleSaveScene = () => {
-    // Here you would implement the save functionality
     console.log("Saving current scene with detected objects");
   };
 
@@ -111,7 +114,6 @@ const CameraPage = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
-      {/* Camera view - full height with flex-1 */}
       <div className="flex-1 relative overflow-hidden">
         {!isDemoMode && !showPreview && (
           <video
@@ -123,15 +125,13 @@ const CameraPage = () => {
         )}
         
         {isDemoMode && (
-          // Demo mode with object detection
           <div className="absolute inset-0 w-full h-full">
             <img 
-              src="/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png"
+              src="/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
               alt="Demo scene"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
             
-            {/* Object overlays */}
             {detectedObjects.map((object, index) => (
               <div
                 key={index}
@@ -172,7 +172,6 @@ const CameraPage = () => {
           </div>
         )}
 
-        {/* Camera controls overlaid on top of the camera view */}
         <div className="absolute top-6 inset-x-0 px-6 flex justify-between items-center">
           <button 
             onClick={handleBack}
@@ -201,7 +200,6 @@ const CameraPage = () => {
         </div>
       </div>
 
-      {/* Bottom controls - fixed height */}
       <div className="bg-black px-6 pb-10 pt-4">
         <div className="flex justify-between items-center px-8">
           <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
