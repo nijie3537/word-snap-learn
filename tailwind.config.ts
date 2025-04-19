@@ -25,7 +25,7 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
                 wordsnap: {
-                    "primary-green": "#C1FF84",
+                    "primary-green": "#A5E34C",
                     "secondary-green": "#DBF989",
                     "bg-light": "#F6FFEE",
                     "bg-alt": "#F2F5E4",
@@ -97,6 +97,9 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			fontFamily: {
+				'game': ['Bungee', 'cursive']
 			}
 		}
 	},

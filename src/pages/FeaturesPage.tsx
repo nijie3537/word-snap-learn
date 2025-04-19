@@ -32,7 +32,7 @@ const FeaturesPage = () => {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="text-center mb-6 mt-4"
       >
-        <h1 className="text-xl font-bold mb-2">Welcome to Word Snap</h1>
+        <h1 className="text-2xl font-game text-wordsnap-primary-green mb-2">Word Snap</h1>
         <p className="text-sm text-gray-600">
           Learn vocabulary through your camera lens
         </p>
