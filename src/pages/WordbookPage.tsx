@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -36,27 +35,6 @@ const WordbookPage = () => {
       translation: "粉底液",
       date: "2 weeks ago",
       image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png"
-    }
-  ]);
-  
-  const [collections] = useState([
-    {
-      id: 1,
-      name: "Vegetables",
-      count: 8,
-      image: "/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png"
-    },
-    {
-      id: 2,
-      name: "Makeup",
-      count: 12,
-      image: "/lovable-uploads/686e5f44-719f-410f-b1a8-0237f41178e6.png"
-    },
-    {
-      id: 3,
-      name: "Coffee Items",
-      count: 6,
-      image: "/lovable-uploads/3972fc6f-677c-48b1-8cdf-257e78b7988d.png"
     }
   ]);
 
@@ -101,22 +79,22 @@ const WordbookPage = () => {
           
           <TabsContent value="collections">
             <div className="grid grid-cols-2 gap-3">
-              {collections.map((collection) => (
+              {words.map((item) => (
                 <motion.div
-                  key={collection.id}
+                  key={item.id}
                   className="bg-white rounded-xl overflow-hidden shadow-sm"
                   whileHover={{ y: -3 }}
                 >
                   <div className="h-32 bg-gray-100">
                     <img 
-                      src={collection.image} 
-                      alt={collection.name}
+                      src={item.image} 
+                      alt={item.word}
                       className="w-full h-full object-cover" 
                     />
                   </div>
                   <div className="p-3">
-                    <h3 className="font-medium">{collection.name}</h3>
-                    <p className="text-xs text-gray-600">{collection.count} words</p>
+                    <h3 className="font-medium">{item.word}</h3>
+                    <p className="text-xs text-gray-600">{item.date}</p>
                   </div>
                 </motion.div>
               ))}
