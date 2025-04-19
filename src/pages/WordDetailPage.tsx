@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Volume } from "lucide-react";
@@ -137,11 +138,15 @@ const WordDetailPage = () => {
     }, 2000);
   };
 
+  const handleBack = () => {
+    navigate("/home");  // Navigate to home page instead of previous page
+  };
+
   return (
     <div className="min-h-screen bg-wordsnap-bg-light">
       {/* Header */}
       <div className="bg-wordsnap-primary-green py-4 px-6 flex items-center">
-        <button onClick={() => navigate(-1)} className="mr-4">
+        <button onClick={handleBack} className="mr-4">
           <ArrowLeft className="w-6 h-6" />
         </button>
         <h1 className="text-xl font-bold capitalize">
