@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -51,72 +50,73 @@ const HomePage = () => {
         <p className="text-sm">What would you like to learn today?</p>
       </div>
       
-      <ScrollArea className="flex-1 px-6 py-4">
-        {/* Review Section */}
-        <section className="mb-8">
-          <h2 className="text-lg font-semibold mb-3">Review Today</h2>
-          <div className="grid grid-cols-2 gap-3">
-            {reviewWords.map((word) => (
-              <motion.div
-                key={word.id}
-                className="bg-white rounded-xl overflow-hidden shadow-sm"
-                whileHover={{ y: -3, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
-                onClick={() => navigate(`/word/${word.word.toLowerCase()}`)}
-              >
-                <div className="h-24 bg-gray-100">
-                  <img 
-                    src={word.image} 
-                    alt={word.word}
-                    className="w-full h-full object-cover" 
-                  />
-                </div>
-                <div className="p-3">
-                  <h3 className="font-medium">{word.word}</h3>
-                  <p className="text-xs text-gray-600">{word.translation}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-        
-        {/* AI Suggestions */}
-        <section className="mb-20">
-          <h2 className="text-lg font-semibold mb-3">AI-Suggested Words</h2>
-          <div className="space-y-4">
-            {aiSuggestions.map((suggestion) => (
-              <motion.div
-                key={suggestion.id}
-                className="bg-white rounded-xl overflow-hidden shadow-sm"
-                whileHover={{ y: -3 }}
-              >
-                <div className="h-32 bg-gray-100">
-                  <img 
-                    src={suggestion.image} 
-                    alt={suggestion.category}
-                    className="w-full h-full object-cover" 
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-medium mb-1">{suggestion.category}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {suggestion.words.map((word, idx) => (
-                      <span 
-                        key={idx}
-                        className="text-xs bg-wordsnap-bg-light px-2 py-1 rounded-full"
-                      >
-                        {word}
-                      </span>
-                    ))}
+      <ScrollArea className="flex-1">
+        <div className="min-h-[calc(100dvh-116px)] px-6 py-4 flex flex-col">
+          {/* Review Section */}
+          <section className="flex-1 mb-8">
+            <h2 className="text-lg font-semibold mb-3">Review Today</h2>
+            <div className="grid grid-cols-2 gap-3">
+              {reviewWords.map((word) => (
+                <motion.div
+                  key={word.id}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm"
+                  whileHover={{ y: -3, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                  onClick={() => navigate(`/word/${word.word.toLowerCase()}`)}
+                >
+                  <div className="h-24 bg-gray-100">
+                    <img 
+                      src={word.image} 
+                      alt={word.word}
+                      className="w-full h-full object-cover" 
+                    />
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
+                  <div className="p-3">
+                    <h3 className="font-medium">{word.word}</h3>
+                    <p className="text-xs text-gray-600">{word.translation}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+          
+          {/* AI Suggestions */}
+          <section className="mb-20">
+            <h2 className="text-lg font-semibold mb-3">AI-Suggested Words</h2>
+            <div className="space-y-4">
+              {aiSuggestions.map((suggestion) => (
+                <motion.div
+                  key={suggestion.id}
+                  className="bg-white rounded-xl overflow-hidden shadow-sm"
+                  whileHover={{ y: -3 }}
+                >
+                  <div className="h-32 bg-gray-100">
+                    <img 
+                      src={suggestion.image} 
+                      alt={suggestion.category}
+                      className="w-full h-full object-cover" 
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-medium mb-1">{suggestion.category}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {suggestion.words.map((word, idx) => (
+                        <span 
+                          key={idx}
+                          className="text-xs bg-wordsnap-bg-light px-2 py-1 rounded-full"
+                        >
+                          {word}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        </div>
       </ScrollArea>
     </div>
   );
 };
 
 export default HomePage;
-
