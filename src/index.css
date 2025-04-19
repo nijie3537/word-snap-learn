@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -97,5 +99,17 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+  }
+  
+  /* iOS safe area handling */
+  .pb-safe {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+  
+  .pt-safe {
+    padding-top: calc(1rem + env(safe-area-inset-top));
   }
 }

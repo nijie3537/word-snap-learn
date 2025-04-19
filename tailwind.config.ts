@@ -24,6 +24,14 @@ export default {
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
+                wordsnap: {
+                    "primary-green": "#C1FF84",
+                    "secondary-green": "#DBF989",
+                    "bg-light": "#F6FFEE",
+                    "bg-alt": "#F2F5E4",
+                    "gray-light": "#F1F1F1",
+                    "overlay": "rgba(0, 0, 0, 0.5)"
+                },
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
