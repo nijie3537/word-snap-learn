@@ -30,7 +30,7 @@ const FeaturesPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="text-center mb-6"
+        className="text-center mb-4"  // Reduced margin-bottom from mb-6 to mb-4
       >
         <h1 className="text-xl font-bold text-gray-800">Key Features</h1>
       </motion.div>
