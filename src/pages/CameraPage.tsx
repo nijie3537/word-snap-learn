@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Upload, Save, Zap, ZapOff, Volume2 } from "lucide-react";
@@ -114,22 +115,49 @@ const CameraPage = () => {
 
   return (
     <div className="min-h-screen bg-black flex flex-col">
-      <div className="flex-1 relative overflow-hidden">
+      <div className="absolute top-6 inset-x-0 px-6 flex justify-between items-center z-10">
+        <button 
+          onClick={handleBack}
+          className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
+        >
+          <ArrowLeft className="w-6 h-6 text-white" />
+        </button>
+        
+        <button 
+          onClick={toggleDemo}
+          className="px-4 py-2 rounded-full bg-black bg-opacity-50 text-white"
+        >
+          Demo
+        </button>
+        
+        <button 
+          onClick={toggleFlash}
+          className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
+        >
+          {flashOn ? (
+            <Zap className="w-6 h-6 text-white" />
+          ) : (
+            <ZapOff className="w-6 h-6 text-white" />
+          )}
+        </button>
+      </div>
+
+      <div className="flex-1 relative overflow-hidden flex items-center justify-center mt-16">
         {!isDemoMode && !showPreview && (
           <video
             ref={videoRef}
             autoPlay
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         )}
         
         {isDemoMode && (
-          <div className="absolute inset-0 w-full h-full">
+          <div className="relative w-full h-full flex items-center justify-center">
             <img 
               src="/lovable-uploads/c5c9118f-9818-477c-9b16-144732873347.png"
               alt="Demo scene"
-              className="w-full h-full object-contain"
+              className="w-full h-auto object-contain max-h-[80vh]"
             />
             
             {detectedObjects.map((object, index) => (
@@ -171,51 +199,24 @@ const CameraPage = () => {
             <img src={capturedImage} alt="Captured" className="max-w-full max-h-full object-contain" />
           </div>
         )}
-
-        <div className="absolute top-6 inset-x-0 px-6 flex justify-between items-center">
-          <button 
-            onClick={handleBack}
-            className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
-          >
-            <ArrowLeft className="w-6 h-6 text-white" />
-          </button>
-          
-          <button 
-            onClick={toggleDemo}
-            className="px-4 py-2 rounded-full bg-black bg-opacity-50 text-white"
-          >
-            Demo
-          </button>
-          
-          <button 
-            onClick={toggleFlash}
-            className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
-          >
-            {flashOn ? (
-              <Zap className="w-6 h-6 text-white" />
-            ) : (
-              <ZapOff className="w-6 h-6 text-white" />
-            )}
-          </button>
-        </div>
       </div>
 
-      <div className="bg-black px-6 pb-10 pt-4">
+      <div className="bg-black px-6 pb-6 pt-2">
         <div className="flex justify-between items-center px-8">
-          <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
-            <Upload className="w-6 h-6 text-white" />
+          <button className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center">
+            <Upload className="w-5 h-5 text-white" />
           </button>
           
           <button 
             onClick={handleCapture}
-            className="w-20 h-20 rounded-full bg-white border-4 border-gray-700"
+            className="w-16 h-16 rounded-full bg-white border-4 border-gray-700"
           />
           
           <button 
             onClick={handleSaveScene}
-            className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center"
+            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center"
           >
-            <Save className="w-6 h-6 text-white" />
+            <Save className="w-5 h-5 text-white" />
           </button>
         </div>
       </div>
