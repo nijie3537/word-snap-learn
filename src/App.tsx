@@ -17,35 +17,51 @@ import SettingsPage from "./pages/SettingsPage";
 import WordDetailPage from "./pages/WordDetailPage";
 import NotFound from "./pages/NotFound";
 import BottomNavigation from "./components/BottomNavigation";
+import ProjectShowcase from "./pages/ProjectShowcase";
+import EducationalAnnotations from "./pages/EducationalAnnotations";
+import CourseAlignmentPage from "./pages/CourseAlignmentPage";
+import WebsiteNavigation from "./components/WebsiteNavigation";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AppMetadata />
-        <div className="min-h-screen bg-wordsnap-bg-light">
-          <Routes>
-            <Route path="/" element={<SplashScreen />} />
-            <Route path="/features" element={<FeaturesPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/language-selection" element={<LanguageSelectionPage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/wordbook" element={<WordbookPage />} />
-            <Route path="/camera" element={<CameraPage />} />
-            <Route path="/practice" element={<PracticePage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/word/:word" element={<WordDetailPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <BottomNavigation />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  // Check if we're in the app or the showcase website
+  const isAppRoute = window.location.pathname.match(/^\/(home|camera|wordbook|practice|settings|word)/);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AppMetadata />
+          <div className="min-h-screen bg-wordsnap-bg-light">
+            {!isAppRoute && <WebsiteNavigation />}
+            <Routes>
+              {/* Website Routes */}
+              <Route path="/" element={<FeaturesPage />} />
+              <Route path="/showcase" element={<ProjectShowcase />} />
+              <Route path="/educational" element={<EducationalAnnotations />} />
+              <Route path="/alignment" element={<CourseAlignmentPage />} />
+              
+              {/* App Routes */}
+              <Route path="/features" element={<FeaturesPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/language-selection" element={<LanguageSelectionPage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/wordbook" element={<WordbookPage />} />
+              <Route path="/camera" element={<CameraPage />} />
+              <Route path="/practice" element={<PracticePage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/word/:word" element={<WordDetailPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            {isAppRoute && <BottomNavigation />}
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
