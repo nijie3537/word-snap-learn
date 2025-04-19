@@ -5,37 +5,9 @@ import { ArrowLeft, Volume } from "lucide-react";
 import { motion } from "framer-motion";
 import { removeBackground, loadImage } from "../utils/imageUtils";
 
-const WordDetailPage = () => {
-  const { word } = useParams<{ word: string }>();
-  const navigate = useNavigate();
-  const [playingAudio, setPlayingAudio] = useState(false);
-  const [processedImage, setProcessedImage] = useState<string | null>(null);
-
-  useEffect(() => {
-    const processImage = async () => {
-      try {
-        // Fetch the image
-        const response = await fetch('/lovable-uploads/photo-1498050108023-c5249f4df085.jpg');
-        const blob = await response.blob();
-        const imageElement = await loadImage(blob);
-        
-        // Remove background
-        const processedBlob = await removeBackground(imageElement);
-        const processedImageUrl = URL.createObjectURL(processedBlob);
-        setProcessedImage(processedImageUrl);
-      } catch (error) {
-        console.error('Image processing error:', error);
-        // Fallback to original image if processing fails
-        setProcessedImage('/lovable-uploads/photo-1498050108023-c5249f4df085.jpg');
-      }
-    };
-
-    processImage();
-  }, []);
-
-  // Updated mock data to include sources for examples
-  const wordData = {
-    word: word || "Coffee Machine",
+// Mock word data mapping
+const wordDatabase = {
+  "coffee machine": {
     phonetic: "/ˈkɒfi məˈʃiːn/",
     translation: "咖啡机 (Kāfēi jī)",
     memoryHack: "Think of it as the magical machine that transforms simple beans into liquid gold - your morning coffee!",
@@ -49,11 +21,75 @@ const WordDetailPage = () => {
         source: "Collins Dictionary"
       }
     ],
-    media: {
-      image: processedImage || '/lovable-uploads/photo-1498050108023-c5249f4df085.jpg',
-      reference: "A MacBook representing a coffee machine's 'brain'"
-    }
-  };
+    image: '/lovable-uploads/photo-1498050108023-c5249f4df085.jpg',
+    reference: "A modern coffee machine"
+  },
+  "monkey": {
+    phonetic: "/ˈmʌŋki/",
+    translation: "猴子 (Hóuzi)",
+    memoryHack: "Picture a playful creature swinging from tree to tree, just like the word 'monkey' bounces off your tongue!",
+    examples: [
+      {
+        text: "The monkey peeled the banana with remarkable dexterity.",
+        source: "Longman Dictionary"
+      },
+      {
+        text: "A group of monkeys lived in harmony in the ancient temple.",
+        source: "Oxford Dictionary"
+      }
+    ],
+    image: '/lovable-uploads/photo-1501286353178-1ec881214838.jpg',
+    reference: "A monkey holding a banana"
+  },
+  "kitten": {
+    phonetic: "/ˈkɪtn/",
+    translation: "小猫 (Xiǎomāo)",
+    memoryHack: "Think of the soft 'kit' sound at the start - as gentle as a kitten's paw!",
+    examples: [
+      {
+        text: "The kitten curled up in a ball of fur on the windowsill.",
+        source: "Cambridge Dictionary"
+      },
+      {
+        text: "She adopted a playful kitten from the local shelter.",
+        source: "Merriam-Webster"
+      }
+    ],
+    image: '/lovable-uploads/photo-1535268647677-300dbf3d78d1.jpg',
+    reference: "An adorable grey tabby kitten"
+  }
+};
+
+const WordDetailPage = () => {
+  const { word } = useParams<{ word: string }>();
+  const navigate = useNavigate();
+  const [playingAudio, setPlayingAudio] = useState(false);
+  const [processedImage, setProcessedImage] = useState<string | null>(null);
+
+  // Get word data from our database
+  const wordData = word ? wordDatabase[word.toLowerCase()] || wordDatabase["coffee machine"] : wordDatabase["coffee machine"];
+
+  useEffect(() => {
+    const processImage = async () => {
+      try {
+        // Fetch the image
+        const response = await fetch(wordData.image);
+        const blob = await response.blob();
+        const imageElement = await loadImage(blob);
+        
+        // Remove background
+        const processedBlob = await removeBackground(imageElement);
+        const processedImageUrl = URL.createObjectURL(processedBlob);
+        setProcessedImage(processedImageUrl);
+      } catch (error) {
+        console.error('Image processing error:', error);
+        // Fallback to original image if processing fails
+        setProcessedImage(wordData.image);
+      }
+    };
+
+    processImage();
+  }, [word, wordData.image]);
 
   const playPronunciation = () => {
     setPlayingAudio(true);
@@ -71,7 +107,7 @@ const WordDetailPage = () => {
           <ArrowLeft className="w-6 h-6" />
         </button>
         <h1 className="text-xl font-bold capitalize">
-          {wordData.word}
+          {word || "Coffee Machine"}
         </h1>
       </div>
 
@@ -79,8 +115,8 @@ const WordDetailPage = () => {
         {/* Word image */}
         <div className="mb-6 rounded-xl overflow-hidden bg-white shadow-md">
           <img 
-            src={wordData.media.image} 
-            alt={wordData.word} 
+            src={processedImage || wordData.image} 
+            alt={word || "Coffee Machine"}
             className="w-full h-48 object-contain bg-white"
           />
         </div>
@@ -94,7 +130,7 @@ const WordDetailPage = () => {
         >
           <div className="flex justify-between items-start mb-3">
             <div>
-              <h2 className="text-2xl font-bold capitalize">{wordData.word}</h2>
+              <h2 className="text-2xl font-bold capitalize">{word || "Coffee Machine"}</h2>
               <p className="text-gray-500">{wordData.phonetic}</p>
             </div>
             <button 
@@ -137,7 +173,7 @@ const WordDetailPage = () => {
           </ul>
           
           <p className="text-xs text-gray-500 mt-4">
-            {wordData.media.reference}
+            {wordData.reference}
           </p>
         </motion.div>
         
@@ -158,3 +194,4 @@ const WordDetailPage = () => {
 };
 
 export default WordDetailPage;
+
