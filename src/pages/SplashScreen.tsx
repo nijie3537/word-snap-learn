@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -7,17 +7,6 @@ import { Button } from "@/components/ui/button";
 const SplashScreen = () => {
   const navigate = useNavigate();
   const [animationComplete, setAnimationComplete] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimationComplete(true);
-      setTimeout(() => {
-        navigate("/features");
-      }, 500);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, [navigate]);
 
   const handleGetStarted = () => {
     navigate("/features");
