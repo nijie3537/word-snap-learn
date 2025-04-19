@@ -51,9 +51,9 @@ const HomePage = () => {
       </div>
       
       <ScrollArea className="flex-1">
-        <div className="min-h-[calc(100dvh-116px)] px-6 py-4 flex flex-col">
+        <div className="px-6">
           {/* Review Section */}
-          <section className="flex-1 mb-8">
+          <section className="min-h-[calc(100dvh-116px)] py-4">
             <h2 className="text-lg font-semibold mb-3">Review Today</h2>
             <div className="grid grid-cols-2 gap-3">
               {reviewWords.map((word) => (
@@ -80,7 +80,7 @@ const HomePage = () => {
           </section>
           
           {/* AI Suggestions */}
-          <section className="mb-20">
+          <section className="min-h-[calc(100dvh-116px)] mb-20">
             <h2 className="text-lg font-semibold mb-3">AI-Suggested Words</h2>
             <div className="space-y-4">
               {aiSuggestions.map((suggestion) => (
