@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -46,7 +45,9 @@ const SplashScreen = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          Learn Vocabulary through Your Lens – AI-Powered Language Mastery
+          Snap. Learn. Remember.
+          <br />
+          – AI-Powered Word Learning
         </motion.p>
       </motion.div>
 
