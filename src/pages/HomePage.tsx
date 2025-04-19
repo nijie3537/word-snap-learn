@@ -1,6 +1,8 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -42,14 +44,14 @@ const HomePage = () => {
   ]);
 
   return (
-    <div className="min-h-screen bg-wordsnap-bg-light pb-20">
+    <div className="flex flex-col h-[100dvh] bg-wordsnap-bg-light">
       {/* Header */}
-      <div className="bg-wordsnap-primary-green pt-12 pb-4 px-6">
+      <div className="bg-wordsnap-primary-green pt-12 pb-4 px-6 flex-none">
         <h1 className="text-2xl font-bold mb-1">Hello!</h1>
         <p className="text-sm">What would you like to learn today?</p>
       </div>
       
-      <div className="p-6">
+      <ScrollArea className="flex-1 px-6 py-4">
         {/* Review Section */}
         <section className="mb-8">
           <h2 className="text-lg font-semibold mb-3">Review Today</h2>
@@ -78,7 +80,7 @@ const HomePage = () => {
         </section>
         
         {/* AI Suggestions */}
-        <section>
+        <section className="mb-20">
           <h2 className="text-lg font-semibold mb-3">AI-Suggested Words</h2>
           <div className="space-y-4">
             {aiSuggestions.map((suggestion) => (
@@ -111,9 +113,10 @@ const HomePage = () => {
             ))}
           </div>
         </section>
-      </div>
+      </ScrollArea>
     </div>
   );
 };
 
 export default HomePage;
+
