@@ -34,7 +34,7 @@ const CameraPage = () => {
       name: "Portafilter",
       pronunciation: "/ˈpɔːtəfɪltə/",
       translation: "咖啡滤器",
-      position: { top: "80%", left: "30%" }
+      position: { top: "85%", left: "25%" }
     },
     {
       name: "Coffee Tamper",
