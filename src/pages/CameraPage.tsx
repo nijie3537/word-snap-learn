@@ -24,7 +24,7 @@ const CameraPage = () => {
       name: "Coffee Grinder",
       pronunciation: "/ˈkɒfi ˈɡraɪndə/",
       translation: "咖啡研磨机",
-      position: { top: "30%", left: "70%" }
+      position: { top: "30%", left: "75%" }  // Moved further right
     },
     {
       name: "Milk Pitcher",
