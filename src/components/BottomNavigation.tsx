@@ -6,6 +6,12 @@ const BottomNavigation = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
+  // Don't show navigation on these paths
+  const hiddenPaths = ["/", "/features", "/camera"];
+  if (hiddenPaths.includes(currentPath)) {
+    return null;
+  }
+
   const navItems = [
     {
       name: "Home",
@@ -33,11 +39,6 @@ const BottomNavigation = () => {
       path: "/settings",
     },
   ];
-
-  // Don't show the bottom navigation on the splash screen and features page
-  if (currentPath === "/" || currentPath === "/features") {
-    return null;
-  }
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 pb-safe">
