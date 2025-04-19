@@ -1,13 +1,37 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Volume } from "lucide-react";
 import { motion } from "framer-motion";
+import { removeBackground, loadImage } from "../utils/imageUtils";
 
 const WordDetailPage = () => {
   const { word } = useParams<{ word: string }>();
   const navigate = useNavigate();
   const [playingAudio, setPlayingAudio] = useState(false);
+  const [processedImage, setProcessedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const processImage = async () => {
+      try {
+        // Fetch the image
+        const response = await fetch('/lovable-uploads/photo-1498050108023-c5249f4df085.jpg');
+        const blob = await response.blob();
+        const imageElement = await loadImage(blob);
+        
+        // Remove background
+        const processedBlob = await removeBackground(imageElement);
+        const processedImageUrl = URL.createObjectURL(processedBlob);
+        setProcessedImage(processedImageUrl);
+      } catch (error) {
+        console.error('Image processing error:', error);
+        // Fallback to original image if processing fails
+        setProcessedImage('/lovable-uploads/photo-1498050108023-c5249f4df085.jpg');
+      }
+    };
+
+    processImage();
+  }, []);
 
   // Updated mock data to include sources for examples
   const wordData = {
@@ -26,8 +50,8 @@ const WordDetailPage = () => {
       }
     ],
     media: {
-      image: "/lovable-uploads/photo-1721322800607-8c38375eef04.jpg",
-      reference: "From a professional coffee shop setting"
+      image: processedImage || '/lovable-uploads/photo-1498050108023-c5249f4df085.jpg',
+      reference: "A MacBook representing a coffee machine's 'brain'"
     }
   };
 
@@ -57,7 +81,7 @@ const WordDetailPage = () => {
           <img 
             src={wordData.media.image} 
             alt={wordData.word} 
-            className="w-full h-48 object-cover"
+            className="w-full h-48 object-contain bg-white"
           />
         </div>
 
@@ -134,4 +158,3 @@ const WordDetailPage = () => {
 };
 
 export default WordDetailPage;
-
