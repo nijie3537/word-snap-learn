@@ -1,11 +1,13 @@
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Upload, Save, Zap, ZapOff, Camera as CameraIcon, Volume2 } from "lucide-react";
 
 const CameraPage = () => {
   const navigate = useNavigate();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [flashOn, setFlashOn] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [detectedObjects, setDetectedObjects] = useState([
     {
@@ -34,8 +36,40 @@ const CameraPage = () => {
     }
   ]);
 
+  useEffect(() => {
+    const startCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "environment" },
+          audio: false
+        });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (err) {
+        console.error("Error accessing camera:", err);
+      }
+    };
+
+    if (!isDemoMode) {
+      startCamera();
+    }
+
+    return () => {
+      if (videoRef.current?.srcObject) {
+        const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+        tracks.forEach(track => track.stop());
+      }
+    };
+  }, [isDemoMode]);
+
   const toggleFlash = () => {
     setFlashOn(!flashOn);
+  };
+
+  const toggleDemo = () => {
+    setIsDemoMode(!isDemoMode);
+    setShowPreview(false);
   };
 
   const handleCapture = () => {
@@ -60,21 +94,29 @@ const CameraPage = () => {
     <div className="min-h-screen bg-black relative flex flex-col">
       {/* Camera view */}
       <div className="flex-1 bg-gray-900 relative">
-        {!showPreview ? (
-          // Camera viewfinder
-          <div className="w-full h-full flex items-center justify-center">
-            <CameraIcon className="w-20 h-20 text-gray-500 opacity-20" />
-          </div>
-        ) : (
-          // Preview with detected objects
-          <div className="w-full h-full flex items-center justify-center relative">
-            <div className="bg-gray-800 w-full h-full opacity-20 absolute inset-0" />
+        {!isDemoMode && !showPreview && (
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        )}
+        
+        {isDemoMode && (
+          // Demo mode with object detection
+          <div className="w-full h-full relative">
+            <img 
+              src="/lovable-uploads/349b280c-9d9c-4b73-a2d4-f536271ae068.png"
+              alt="Demo scene"
+              className="w-full h-full object-cover"
+            />
             
             {/* Object overlays */}
             {detectedObjects.map((object, index) => (
               <div
                 key={index}
-                className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2"
+                className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                 style={{ top: object.position.top, left: object.position.left }}
               >
                 <div className="bg-[#F2F5E4] bg-opacity-90 rounded-xl p-3 shadow-lg">
@@ -104,30 +146,44 @@ const CameraPage = () => {
             ))}
           </div>
         )}
+        
+        {showPreview && (
+          <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+            <div className="text-white">Preview mode</div>
+          </div>
+        )}
       </div>
 
       {/* Camera controls */}
-      <div className="bg-black px-6 pb-10 pt-4">
-        <div className="flex justify-between items-center mb-6">
-          <button 
-            onClick={() => navigate(-1)}
-            className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center"
-          >
-            <ArrowLeft className="w-6 h-6 text-white" />
-          </button>
-          
-          <button 
-            onClick={toggleFlash}
-            className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center"
-          >
-            {flashOn ? (
-              <Zap className="w-6 h-6 text-white" />
-            ) : (
-              <ZapOff className="w-6 h-6 text-white" />
-            )}
-          </button>
-        </div>
+      <div className="absolute top-6 left-0 right-0 px-6 flex justify-between items-center">
+        <button 
+          onClick={() => navigate(-1)}
+          className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
+        >
+          <ArrowLeft className="w-6 h-6 text-white" />
+        </button>
         
+        <button 
+          onClick={toggleDemo}
+          className="px-4 py-2 rounded-full bg-black bg-opacity-50 text-white"
+        >
+          Demo
+        </button>
+        
+        <button 
+          onClick={toggleFlash}
+          className="w-12 h-12 rounded-full bg-black bg-opacity-50 flex items-center justify-center"
+        >
+          {flashOn ? (
+            <Zap className="w-6 h-6 text-white" />
+          ) : (
+            <ZapOff className="w-6 h-6 text-white" />
+          )}
+        </button>
+      </div>
+
+      {/* Bottom controls */}
+      <div className="bg-black px-6 pb-10 pt-4">
         <div className="flex justify-between items-center px-8">
           <button className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
             <Upload className="w-6 h-6 text-white" />
