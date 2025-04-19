@@ -16,31 +16,31 @@ const CameraPage = () => {
       name: "Coffee Machine",
       pronunciation: "/ˈkɒfi məˈʃiːn/",
       translation: "咖啡机",
-      position: { top: "25%", left: "30%" }
+      position: { top: "20%", left: "25%" }
     },
     {
       name: "Coffee Grinder",
       pronunciation: "/ˈkɒfi ˈɡraɪndə/",
       translation: "咖啡研磨机",
-      position: { top: "30%", left: "75%" }
+      position: { top: "35%", left: "80%" }
     },
     {
       name: "Milk Pitcher",
       pronunciation: "/mɪlk ˈpɪtʃə/",
       translation: "奶壶",
-      position: { top: "70%", left: "25%" }
+      position: { top: "75%", left: "20%" }
     },
     {
       name: "Portafilter",
       pronunciation: "/ˈpɔːtəfɪltə/",
       translation: "咖啡滤器",
-      position: { top: "80%", left: "50%" }
+      position: { top: "85%", left: "45%" }
     },
     {
       name: "Coffee Tamper",
       pronunciation: "/ˈkɒfi ˈtæmpə/",
       translation: "咖啡压粉器",
-      position: { top: "75%", left: "75%" }
+      position: { top: "70%", left: "80%" }
     }
   ]);
 
@@ -138,24 +138,24 @@ const CameraPage = () => {
                 className="absolute z-10 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                 style={{ top: object.position.top, left: object.position.left }}
               >
-                <div className="bg-[#F2F5E4] bg-opacity-90 rounded-xl p-2 shadow-lg max-w-[200px]">
-                  <h3 className="text-sm font-medium text-gray-800">
+                <div className="bg-[#F2F5E4] bg-opacity-70 rounded-lg p-1.5 shadow-lg max-w-[160px]">
+                  <h3 className="text-xs font-medium text-gray-800">
                     {object.name}
                   </h3>
                   <div className="flex items-center gap-1 mt-0.5">
-                    <span className="text-xs text-gray-600">{object.pronunciation}</span>
+                    <span className="text-[10px] text-gray-600">{object.pronunciation}</span>
                     <button 
                       onClick={() => playPronunciation(object.name)}
                       className="p-0.5 hover:text-wordsnap-primary-green"
                     >
-                      <Volume2 className="w-3 h-3" />
+                      <Volume2 className="w-2.5 h-2.5" />
                     </button>
                   </div>
                   <div className="flex items-center justify-between mt-0.5">
-                    <span className="text-xs text-gray-700">{object.translation}</span>
+                    <span className="text-[10px] text-gray-700">{object.translation}</span>
                     <button 
                       onClick={() => handleAddWord(object.name)}
-                      className="ml-1 w-4 h-4 flex items-center justify-center rounded-full bg-wordsnap-primary-green text-white text-xs"
+                      className="ml-1 w-3.5 h-3.5 flex items-center justify-center rounded-full bg-wordsnap-primary-green text-white text-[10px]"
                     >
                       +
                     </button>
