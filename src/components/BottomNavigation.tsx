@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { Home, BookOpen, Camera, BookText, Settings } from "lucide-react";
 
@@ -5,8 +6,8 @@ const BottomNavigation = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // Don't show navigation on camera and other specified paths
-  const hiddenPaths = ["/camera", "/", "/features"];
+  // Don't show navigation on camera, login, and other specified paths
+  const hiddenPaths = ["/camera", "/", "/features", "/login"];
   if (hiddenPaths.includes(currentPath)) {
     return null;
   }
