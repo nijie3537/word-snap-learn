@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -15,7 +14,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Define custom social media icons
   const socialProviders = [
     { 
       name: "Google", 
@@ -62,7 +60,6 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate authentication process
     setTimeout(() => {
       setIsLoading(false);
       toast({
